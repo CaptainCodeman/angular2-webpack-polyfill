@@ -13,9 +13,6 @@ module.exports = {
 //    'core-js/es6/symbol',
 //    'core-js/es7/reflect',
 
-//    if we want to go with the angular2 provided zone + reflect-metadata
-//    'angular2/bundles/angular2-polyfills',
-
       'zone.js/dist/zone',
       './src/vendor',
     ],
