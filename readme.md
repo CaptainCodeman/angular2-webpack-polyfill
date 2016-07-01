@@ -1,5 +1,37 @@
 #Angular2 Webpack Polyfill
-A simple starter example showing Angular2 bundled using webpack with polyfill.io service.
+A simple starter example showing Angular 2 bundled using webpack with the polyfill.io service
+and core.js for cross browser compatibility. Core.js can be loaded from a CDN or added to the
+vendor bundle depending on your preference.
+
+When this project was originally created, correctly loading the polyfills for all the browsers
+promised to be supported by Angular 2 was often confusing and used different libraries that had
+performance issues. There were also lots of unecessary dependencies added to a project which was
+clutter and this was an attempt to simplyfy everything.
+
+You can see a (live example)[http://captain-codeman.appspot.com/] of the app - explore the
+network tab to see the polyfill requests and vendor / app bundle sizes. The RC4 version of these
+are currently 722Kb + 3Kb or 165Kb + 1.3Kb when gzipped. Polyfills are another ~27.8Kb (if using
+Chrome).
+
+## Webpack Build
+Although there were some webpack seed projects when this was created, I found many of them to be
+too big and too complex for learning. The Webpack configuration in this project is meant to be
+the bare bones showing how to have some shared configuration, a devlopement build and a production
+build with hashed filenames (for long-term cacheability) and minification. It's been used as the
+basis for more comprehensive applications though.
+
+The initial quickstart and CLI tools for Angular 2 seemed to favour builds based on System.js
+and unfortunately, this seemed to cause issues for lots of new users (confusion around configuration
+and performance with hundreds of requests and multi Mb downloads if bundling wasn't used). They
+now appear to be also moving to Webpack as the preferred solution.
+
+## Polyfill service
+The polyfill downloaded is based on the browser user agent. The lack of Intl support in Safari
+is the reason for it being the largest (currently used in things such as number pipe formatting).
+Using the separate polyfill service prevents other browser users from having to pay the download
+price for Safari and IE support. If polyfills were added directly to the bundle then users with
+browsers that have native support (such as Chrome) would be forced to download and evaluate code
+that is not required.
 
 ## Setup
 
@@ -12,24 +44,3 @@ Run dev server
 Build deployment
 
     npm run build
-
-## Polyfill service
-The polyfill downloaded is based on the browser user agent. The lack of Intl support in Safari
-is the reason for it being the largest (currently used in number pipe formatting). Using the
-separate polyfill service prevents other browser users from having to pay the download price
-for Safari support.
-
-### Polyfill download size (compressed)
-
-Browser | Size
---- | ---
-Chrome | 911 bytes
-Firefox | 0.32 Kb
-Safari | 15.11 Kb
-Edge | 1.12 Kb
-IE 11 | 2.3 Kb
-
-## IE Fix
-
-The `src/ie-fix.ts` file is based on [this comment](https://github.com/angular/angular/issues/6501#issuecomment-181145904)
-by @justindujardin
