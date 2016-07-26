@@ -48,7 +48,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Angular2 Webpack Polyfill Demo',
-      chunksSortMode: 'none',
+      chunksSortMode: 'auto',
       filename: 'index.html',
       cache: true,
       hash: false,
