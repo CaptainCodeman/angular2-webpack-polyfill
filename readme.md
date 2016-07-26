@@ -42,7 +42,7 @@ Install dependencies:
 
     npm install
 
-Run dev server (run http://localhost:8080)
+Run dev server (run http://localhost:5000)
 
     npm start
 
